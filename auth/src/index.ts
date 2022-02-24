@@ -15,7 +15,8 @@ const app = express();
 expressConfig(app);
 
 app.get("/api", (req, res) => {
-  res.send("success");
+  //   res.set("Server", "Express");
+  res.send("Hello World!");
 });
 
 // routes for each endpoint
