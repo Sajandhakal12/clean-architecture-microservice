@@ -1,9 +1,11 @@
 import express from "express";
+const { Pool } = require("pg");
 // import redis from "redis";
 import config from "./config";
 import expressConfig from "./framework/server/express";
 // import routes from "./frameworks/webserver/routes";
 import serverConfig from "./framework/server/server";
+import connectToPostgres from "./framework/database/postgres/connection";
 // import redisConnection from "./frameworks/database/redis/connection";
 
 // middlewares
@@ -22,10 +24,15 @@ app.get("/api", (req, res) => {
 // routes for each endpoint
 // routes(app, express, redisClient);
 
-// server configuration and start
-serverConfig(app, config).startServer();
+// error handling middleware
+// app.use(errorHandlingMiddleware);
+
+// connect to postgres database
+connectToPostgres(Pool, config.postgres);
+
+console.log(config);
 
 // const redisClient = redisConnection(redis, config).createRedisClient();
 
-// error handling middleware
-// app.use(errorHandlingMiddleware);
+// server configuration and start
+serverConfig(app, config).startServer();
