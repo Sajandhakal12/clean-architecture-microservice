@@ -1,17 +1,13 @@
-import expressRouter from "../expressRouter";
-
-export default function userRouter(express: any, redisClient: any) {
-  const router = expressRouter(express);
-
+export default function userRouter(router: any, redisClient: any) {
   // POST enpdpoints
   router
     .route("/")
-    .post(() => console.log("userRouter"))
-    .get(() => console.log("userRouter"));
+    .post((req: any, res: any) => res.send("POST /user"))
+    .get((req: any, res: any) => res.send("GET /user"));
   router
     .route("/:id")
-    .patch(() => console.log("userRouter"))
-    .put(() => console.log("userRouter"));
+    .patch((req: any, res: any) => res.send("PATCH /user/:id"))
+    .put((req: any, res: any) => res.send("PUT /user/:id"));
 
   return router;
 }

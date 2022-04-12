@@ -1,12 +1,18 @@
-import expressRouter from "../expressRouter";
-
-export default function authRouter(express: any, redisClient: any) {
-  const router = expressRouter(express);
+export default function authRouter(router: any, redisClient: any) {
   // POST enpdpoints
-  router.route("/login").post(() => console.log("authRouter"));
-  router.route("/register").post(() => console.log("authRouter"));
-  router.route("/forget-password").post(() => console.log("authRouter"));
-  router.route("/reset-password").post(() => console.log("authRouter"));
+  router
+    .route("/login")
+    .post((req: any, res: any) => res.send("POST /auth/login"));
+  router.route("/register").post((req: any, res: any) => {
+    console.log("reached");
+    res.send(" POST /auth/register");
+  });
+  router
+    .route("/forget-password")
+    .post((req: any, res: any) => res.send("  POST /auth/forget-password"));
+  router
+    .route("/reset-password")
+    .post((req: any, res: any) => res.send(" POST /auth/reset-password"));
 
   return router;
 }
